@@ -81,6 +81,11 @@ public class PlayerController : MonoBehaviour
             Vector3 dir = (transform.right * hor + transform.forward * ver) * m_moveSpeed * Time.deltaTime;
             _characterController.Move(dir);
         }
+
+        if(transform.position.y < - 30)
+        {
+            transform.position = Vector3.up * 1f;
+        }
     }
 
     void Escape()
