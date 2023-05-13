@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Vector3 _startPosition;
+    private int _clickCount = 0;
 
     private void Awake()
     {
@@ -58,7 +59,17 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        
+
+        _clickCount++;
+        if(_clickCount >= 2)
+        {
+            ClickCount();
+        }
     }
+    public virtual void ClickCount()
+    {
+
+    }
+
 }
     
