@@ -12,11 +12,21 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void OnEnable()
     {
+
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonUp(0) && DataHandler._clickedObject == this) 
+        {
+            Debug.Log("mouse up going do ondrop");
+            OnDrop();
+        }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out ClickableObject clickable) && DataHandler._clickedObject != null && DataHandler._clickedObject == this)
+        if (collision.TryGetComponent(out ClickableObject clickable) && DataHandler._clickedObject == this)
         {
             DataHandler._targetFromClickedObject = clickable;
         }
@@ -38,5 +48,7 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         transform.position = _startPosition;
     }
+
+    public virtual void OnDrop() { }
 }
     

@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
 
     private string _valuesText;
 
+    public TestInputActions _actions;
+
     private void OnClick(InputValue value)
     {
         this.Click(_lastPos);
