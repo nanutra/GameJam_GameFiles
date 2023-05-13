@@ -37,6 +37,15 @@ public partial class @TestInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ClickCanceled"",
+                    ""type"": ""Button"",
+                    ""id"": ""5022676c-04a1-4371-8ece-c2d73f78e59d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""MousePos"",
                     ""type"": ""Value"",
                     ""id"": ""2e48ac99-58ac-48a0-9b56-16ddfea6242e"",
@@ -68,6 +77,17 @@ public partial class @TestInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7d02af4-0ce9-4979-b893-a295404e4d48"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ClickCanceled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -77,6 +97,7 @@ public partial class @TestInputActions : IInputActionCollection2, IDisposable
         // MainActionMap
         m_MainActionMap = asset.FindActionMap("MainActionMap", throwIfNotFound: true);
         m_MainActionMap_Click = m_MainActionMap.FindAction("Click", throwIfNotFound: true);
+        m_MainActionMap_ClickCanceled = m_MainActionMap.FindAction("ClickCanceled", throwIfNotFound: true);
         m_MainActionMap_MousePos = m_MainActionMap.FindAction("MousePos", throwIfNotFound: true);
     }
 
@@ -138,12 +159,14 @@ public partial class @TestInputActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MainActionMap;
     private IMainActionMapActions m_MainActionMapActionsCallbackInterface;
     private readonly InputAction m_MainActionMap_Click;
+    private readonly InputAction m_MainActionMap_ClickCanceled;
     private readonly InputAction m_MainActionMap_MousePos;
     public struct MainActionMapActions
     {
         private @TestInputActions m_Wrapper;
         public MainActionMapActions(@TestInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_MainActionMap_Click;
+        public InputAction @ClickCanceled => m_Wrapper.m_MainActionMap_ClickCanceled;
         public InputAction @MousePos => m_Wrapper.m_MainActionMap_MousePos;
         public InputActionMap Get() { return m_Wrapper.m_MainActionMap; }
         public void Enable() { Get().Enable(); }
@@ -157,6 +180,9 @@ public partial class @TestInputActions : IInputActionCollection2, IDisposable
                 @Click.started -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnClick;
                 @Click.performed -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnClick;
                 @Click.canceled -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnClick;
+                @ClickCanceled.started -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnClickCanceled;
+                @ClickCanceled.performed -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnClickCanceled;
+                @ClickCanceled.canceled -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnClickCanceled;
                 @MousePos.started -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnMousePos;
                 @MousePos.performed -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnMousePos;
                 @MousePos.canceled -= m_Wrapper.m_MainActionMapActionsCallbackInterface.OnMousePos;
@@ -167,6 +193,9 @@ public partial class @TestInputActions : IInputActionCollection2, IDisposable
                 @Click.started += instance.OnClick;
                 @Click.performed += instance.OnClick;
                 @Click.canceled += instance.OnClick;
+                @ClickCanceled.started += instance.OnClickCanceled;
+                @ClickCanceled.performed += instance.OnClickCanceled;
+                @ClickCanceled.canceled += instance.OnClickCanceled;
                 @MousePos.started += instance.OnMousePos;
                 @MousePos.performed += instance.OnMousePos;
                 @MousePos.canceled += instance.OnMousePos;
@@ -177,6 +206,7 @@ public partial class @TestInputActions : IInputActionCollection2, IDisposable
     public interface IMainActionMapActions
     {
         void OnClick(InputAction.CallbackContext context);
+        void OnClickCanceled(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
     }
 }

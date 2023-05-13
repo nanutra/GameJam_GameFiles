@@ -1,64 +1,75 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickableObject : MonoBehaviour, IPointerDownHandler, IDropHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Vector3 _startPosition;
-    public enum TypeObject
-    {
-        None,
-        File,
-        Folder
-    }
-
-    public TypeObject UiObjectType;
+    private int _clickCount = 0;
 
     private void Awake()
     {
         _startPosition = this.transform.position;
     }
 
-    public void OnEndDragItem()
+    public virtual void OnEnable()
     {
-        transform.position = _startPosition;
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnDisable()
     {
-        
-        if(collision.TryGetComponent(out ClickableObject clickable) && DataHandler._clickedObject != null && DataHandler._clickedObject == this)
+
+    }
+
+    public virtual void Update()
+    {
+        if(Input.GetMouseButtonUp(0) && DataHandler._clickedObject == this) 
+        {
+            Debug.Log("mouse up going do ondrop");
+            OnDrop();
+        }
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out ClickableObject clickable) && DataHandler._clickedObject == this)
         {
             DataHandler._targetFromClickedObject = clickable;
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        DataHandler._clickedObject = this;
-        Debug.Log(DataHandler._clickedObject);
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log(DataHandler._targetFromClickedObject);
-        DataHandler._clickedObject.gameObject.SetActive(false);
-    }
-
-
     //drag
-    public void OnBeginDrag(PointerEventData eventData)
+    public virtual void OnBeginDrag(PointerEventData eventData)
     {
         _startPosition = transform.position;
+        DataHandler._clickedObject = this;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
         transform.position = new Vector3(InputManagerHandlerData._lastPos.x, InputManagerHandlerData._lastPos.y, 0f);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
         transform.position = _startPosition;
     }
+
+    public virtual void OnDrop() { }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+
+        _clickCount++;
+        if(_clickCount >= 2)
+        {
+            ClickCount();
+        }
+    }
+    public virtual void ClickCount()
+    {
+
+    }
+
 }
     
