@@ -92,7 +92,10 @@ public class PlayerController : MonoBehaviour
     {
         //met en pause le jeu
         m_canMove = !m_canMove; 
-        Cursor.lockState = CursorLockMode.Locked;
+        if(m_canMove)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+            Cursor.lockState = CursorLockMode.None;
         DataHandler.IsGamePause = !DataHandler.IsGamePause;
         if (m_onGamePauseEvent)
             m_onGamePauseEvent.Raise();
