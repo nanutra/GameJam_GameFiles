@@ -10,12 +10,17 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _startPosition = this.transform.position;
     }
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
 
     }
 
-    private void Update()
+    public virtual void OnDisable()
+    {
+
+    }
+
+    public virtual void Update()
     {
         if(Input.GetMouseButtonUp(0) && DataHandler._clickedObject == this) 
         {
