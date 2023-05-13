@@ -5,6 +5,7 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     private Vector3 _startPosition;
     private int _clickCount = 0;
+    [SerializeField] private bool _canBeClicked = false;
 
     private void Awake()
     {
@@ -25,7 +26,6 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if(Input.GetMouseButtonUp(0) && DataHandler._clickedObject == this) 
         {
-            Debug.Log("mouse up going do ondrop");
             OnDrop();
         }
     }
@@ -59,12 +59,17 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-
-        _clickCount++;
-        if(_clickCount >= 2)
+        if(eventData.button == PointerEventData.InputButton.Left)
         {
-            ClickCount();
+            if (!_canBeClicked) return;
+            _clickCount++;
+            if (_clickCount >= 2)
+            {
+                ClickCount();
+                _clickCount = 0;
+            }
         }
+       
     }
     public virtual void ClickCount()
     {
