@@ -21,11 +21,15 @@ public class GameFileFolder : PlayersFolder
 
     public override void ClickCount()
     {
+        base.ClickCount();
         OnGameFileFolderOpen();
     }
     private void OnGameFileFolderOpen()
     {
+        
         //
+        if (DataHandler.IsFolderWindowOpen) return;
+        DataHandler.IsFolderWindowOpen = true;
         Debug.Log("CallDelegateGameFileFoldre");
         OnGameFileOpenEvent.myEvent?.Invoke();
     }

@@ -28,8 +28,8 @@ RectTransform:
   m_GameObject: {fileID: 1450553752124515750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.31937, y: 0.31937, z: 0.31937}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5266744345750698675}
   - {fileID: 1846777060760735187}
@@ -101,9 +101,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc883f41d82e1c46adfb428c8964573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canBeClicked: 1
   _parentFiles: {fileID: 6026127915580017166}
   _fileNameTextReference: {fileID: 6431539379318511779}
   _fileName: GameFileFolder
+  l_childs: []
+  _heightDifference: 50
   OnGameFileOpenEvent: {fileID: 11400000, guid: 460a5c34d0e435a4fa62966b62efa758,
     type: 2}
 --- !u!1 &1862809178036101546
@@ -253,7 +256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150.25, y: -9.75}
+  m_AnchoredPosition: {x: 0, y: -77.85282}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7928746468552649240
@@ -293,8 +296,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
