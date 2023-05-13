@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Vector3 _startPosition;
 
@@ -50,5 +50,10 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public virtual void OnDrop() { }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+        
+    }
 }
     
