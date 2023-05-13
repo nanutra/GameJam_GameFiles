@@ -17,10 +17,8 @@ public class PlayersFolder : ClickableObject
     [SerializeField]
     private string _fileName;
 
-    private List<PlayersFile> _controllers = new();
-
     [SerializeField]
-    private List<GameObject> l_childs;
+    private List<PlayersFile> _controllers = new();
 
     [SerializeField]
     private float _heightDifference = 50;
@@ -53,19 +51,14 @@ public class PlayersFolder : ClickableObject
         //utilise _controllers.gameObject au lieu de _childs
     }
 
-    public void OnChangeChildren(GameObject go)
-    {
-        l_childs.Add(go) ;
-    }
-
     private void OnDisplayChilds()
     {
-        for(int i = 0; i < l_childs.Count; i++)
+        for(int i = 0; i < _controllers.Count; i++)
         {
 
             Vector3 pos = transform.position - Vector3.up * (i + 1) * _heightDifference;
             pos += Vector3.right * _sidetDifference;
-            l_childs[i].transform.position = pos;
+            _controllers[i].transform.position = pos;
         }
     }
 

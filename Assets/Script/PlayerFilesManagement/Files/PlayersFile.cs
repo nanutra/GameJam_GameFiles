@@ -34,7 +34,7 @@ public class PlayersFile : ClickableObject
         if (DataHandler._targetFromClickedObject is not PlayersFolder) return;
         PlayersFolder _folder = DataHandler._targetFromClickedObject as PlayersFolder;
         _folder.AddPlayerFile(this);
-        transform.SetParent(_folder.ParentFiles);
+        //transform.SetParent(_folder.ParentFiles);
     }
 
     public void SetTextPosition(bool _rightSide)

@@ -44,7 +44,6 @@ public class FolderManager : MonoBehaviour
     {
         _allCurrentGameFilesInWindow = DataHandler._allCurrentFilesInOuindo;
         _gameFileFolderObject.SetActive(true);
-        ShowFilesInWindow();
     }
 
     /// <summary>
@@ -55,21 +54,4 @@ public class FolderManager : MonoBehaviour
         _gameFileFolderObject.SetActive(false);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void ShowFilesInWindow()
-    {
-        for(int i = 0; i < _allCurrentGameFilesInWindow.Count; i++)
-        {
-            _allCurrentGameFilesInWindow[i].transform.parent = null;
-            _allCurrentGameFilesInWindow[i].transform.SetParent(_fileSpawnTransform.transform);
-
-            Vector3 pos = _fileSpawnTransform.transform.position - Vector3.up * (i + 1) * _heightDifference;
-            pos += Vector3.right * _sideDifference;
-            _allCurrentGameFilesInWindow[i].transform.position = pos;
-
-            _allCurrentGameFilesInWindow[i].SetTextPosition(true);
-        }
-    }
 }
