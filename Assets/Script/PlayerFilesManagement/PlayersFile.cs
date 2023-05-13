@@ -1,4 +1,3 @@
-using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
@@ -16,6 +15,14 @@ public class PlayersFile : ClickableObject
     private void Awake()
     {
         _fileNameTextReference.text = _fileName + "." + _fileNameSuffix;
+    }
+
+    public override void OnDrop()
+    {
+        base.OnDrop();
+        if (DataHandler._targetFromClickedObject is not PlayersFolder) return;
+        PlayersFolder _folder = DataHandler._targetFromClickedObject as PlayersFolder;
+        transform.SetParent(_folder.ParentFiles);
     }
 
 }
