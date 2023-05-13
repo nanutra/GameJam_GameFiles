@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickableObject : MonoBehaviour, IPointerDownHandler, IDropHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector3 _startPosition;
 
     private void Awake()
     {
         _startPosition = this.transform.position;
+    }
+
+    private void OnEnable()
+    {
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -18,17 +22,11 @@ public class ClickableObject : MonoBehaviour, IPointerDownHandler, IDropHandler,
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        DataHandler._clickedObject = this;
-    }
-
-    public virtual void OnDrop(PointerEventData eventData) => Debug.Log($"Moved Object From {DataHandler._clickedObject} to {DataHandler._targetFromClickedObject}");
-
     //drag
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         _startPosition = transform.position;
+        DataHandler._clickedObject = this;
     }
 
     public virtual void OnDrag(PointerEventData eventData)

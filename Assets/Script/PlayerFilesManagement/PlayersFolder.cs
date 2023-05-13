@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,15 +7,35 @@ public class PlayersFolder : ClickableObject
 {
     [SerializeField]
     private Transform _parentFiles;
+    public Transform ParentFiles => _parentFiles;
+
+    [SerializeField]
+    private TextMeshProUGUI _fileNameTextReference = null;
+
+    [SerializeField]
+    private string _fileName;
+
+    private List<PlayersFile> _controllers = new();
+
+    private void Awake()
+    {
+        _fileNameTextReference.text = _fileName;
+    }
+
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
     }
 
-    public override void OnDrop(PointerEventData eventData)
+    public void AddPlayerFile(PlayersFile file)
     {
-        //si l'objet auquel la personne a cliqué est un fichier, on le bouge dans le dossier
-        if(DataHandler._clickedObject is File) DataHandler._clickedObject.transform.SetParent(transform);
-        base.OnDrop(eventData);
+        _controllers.Add(file);
     }
+
+    public void GetPlayerFiles(ref List<PlayersFile> files)
+    {
+        _controllers = new();
+        _controllers = files;
+    }
+
 }
