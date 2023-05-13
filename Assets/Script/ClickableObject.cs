@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Vector3 _startPosition;
 
@@ -10,12 +10,17 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _startPosition = this.transform.position;
     }
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
 
     }
 
-    private void Update()
+    public virtual void OnDisable()
+    {
+
+    }
+
+    public virtual void Update()
     {
         if(Input.GetMouseButtonUp(0) && DataHandler._clickedObject == this) 
         {
@@ -50,5 +55,10 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public virtual void OnDrop() { }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+        
+    }
 }
     
