@@ -135,7 +135,8 @@ MonoBehaviour:
   _characterController: {fileID: 5049270766908308443}
   m_mainCamera: {fileID: 5049270767132749799}
   m_moveSpeed: 5
-  m_cameraSens: 10
+  m_cameraSens: 20
+  m_gravityScale: 1
 --- !u!1 &5049270767132749798
 GameObject:
   m_ObjectHideFlags: 0

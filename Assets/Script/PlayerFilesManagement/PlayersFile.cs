@@ -22,6 +22,7 @@ public class PlayersFile : ClickableObject
         base.OnDrop();
         if (DataHandler._targetFromClickedObject is not PlayersFolder) return;
         PlayersFolder _folder = DataHandler._targetFromClickedObject as PlayersFolder;
+        _folder.AddPlayerFile(this);
         transform.SetParent(_folder.ParentFiles);
     }
 
