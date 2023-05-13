@@ -21,7 +21,6 @@ public class PauseManager : MonoBehaviour
 
     void OnPause()
     {
-        Debug.Log("dsds");
         foreach (GameObject go in m_gameObjectsToDisplay)
         { 
             go.SetActive(DataHandler.IsGamePause); 
