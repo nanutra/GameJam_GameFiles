@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
             /**/
             #endregion
 
-
             #region NewCamera
             m_mouseMouvement = Mouse.current.delta.ReadValue();
             Debug.Log(m_mouseMouvement);
