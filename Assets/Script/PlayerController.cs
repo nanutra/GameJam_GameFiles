@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("|--- References ---|")]
+    [Header("CustomEvents")]
+    [SerializeField]
+    CustomEvent m_onGamePauseEvent;
     [Header("Component")]
     [SerializeField]
     private CharacterController _characterController;
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private float xRotation;
     private float yRotation;
     float xrot = 0, yrot = 0;
+
 
 
     private void Start()
@@ -61,7 +65,6 @@ public class PlayerController : MonoBehaviour
 
             #region NewCamera
             m_mouseMouvement = Mouse.current.delta.ReadValue();
-            Debug.Log(m_mouseMouvement);
             xrot = m_mouseMouvement.y * Time.deltaTime * m_cameraSens;
             yrot = m_mouseMouvement.x * Time.deltaTime * m_cameraSens;
             xRotation -= xrot;
@@ -83,9 +86,11 @@ public class PlayerController : MonoBehaviour
     void Escape()
     {
         //met en pause le jeu
-        Debug.Log("MetLeJeuEnPause");
-        m_canMove = false; 
+        m_canMove = !m_canMove; 
         Cursor.lockState = CursorLockMode.Locked;
-
+        DataHandler.IsGamePause = !DataHandler.IsGamePause;
+        if (m_onGamePauseEvent)
+            m_onGamePauseEvent.Raise();
     }
+
 }
