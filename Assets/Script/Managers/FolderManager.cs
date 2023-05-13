@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class FolderManager : MonoBehaviour
 {
@@ -17,6 +16,9 @@ public class FolderManager : MonoBehaviour
     private CustomEvent _onGameFileCloseEvent;
 
     [SerializeField]
+    private CustomEvent _onFolderSelected;
+
+    [SerializeField]
     private List<PlayersFile> _allCurrentGameFilesInWindow;
 
     [SerializeField]
@@ -29,12 +31,14 @@ public class FolderManager : MonoBehaviour
     {
         _onGameFileOpenEvent.myEvent += OnGameFileOpen;
         _onGameFileCloseEvent.myEvent += OnGameFileClosed;
+        _onFolderSelected.myEvent += OnFolderSelected;
     }
 
     private void OnDisable()
     {
         _onGameFileOpenEvent.myEvent -= OnGameFileOpen;
         _onGameFileCloseEvent.myEvent -= OnGameFileClosed;
+        _onFolderSelected.myEvent -= OnFolderSelected;
     }
 
     /// <summary>
@@ -52,6 +56,18 @@ public class FolderManager : MonoBehaviour
     public void OnGameFileClosed()
     {
         _gameFileFolderObject.SetActive(false);
+    }
+
+    public void OnFolderSelected()
+    {
+        List<PlayersFolder> tempList = DataHandler._allPlayersFolder;
+        tempList.Remove(DataHandler._currentFolderSelected);
+
+        DataHandler._currentFolderSelected.DisableOrEnableControllers(true);
+        foreach(var temp in tempList)
+        {
+            temp.DisableOrEnableControllers(false);
+        }
     }
 
 }

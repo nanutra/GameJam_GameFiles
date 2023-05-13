@@ -42,7 +42,6 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         _startPosition = transform.position;
-        DataHandler._clickedObject = this;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -61,6 +60,7 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if(eventData.button == PointerEventData.InputButton.Left)
         {
+            DataHandler._clickedObject = this;
             if (!_canBeClicked) return;
             _clickCount++;
             if (_clickCount >= 2)

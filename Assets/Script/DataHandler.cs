@@ -14,6 +14,10 @@ public static class DataHandler
 
     public static List<PlayersFile> _allCurrentFilesInOuindo = new List<PlayersFile>();
 
+    public static List<PlayersFolder> _allPlayersFolder = new();
+    public static PlayersFolder _currentFolderSelected;
+    public static PlayersFolder _lastFolderSelected;
+
 }
 
 
