@@ -15,6 +15,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ClickCanceled",
+                    "type": "Button",
+                    "id": "5022676c-04a1-4371-8ece-c2d73f78e59d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MousePos",
                     "type": "Value",
                     "id": "2e48ac99-58ac-48a0-9b56-16ddfea6242e",
@@ -44,6 +53,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7d02af4-0ce9-4979-b893-a295404e4d48",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickCanceled",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

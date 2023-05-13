@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float m_cameraSens = 50f;
     private float m_gravityValue = Physics.gravity.y;
+    [SerializeField]
+    private float m_gravityScale = 1f;
 
 
     public static bool m_canMove = true;
@@ -43,8 +45,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) Escape();
-
-
 
         if(m_canMove)
         {
@@ -78,8 +78,16 @@ public class PlayerController : MonoBehaviour
             float hor = Input.GetAxisRaw("Horizontal");
             float ver = Input.GetAxisRaw("Vertical");
 
+
             Vector3 dir = (transform.right * hor + transform.forward * ver) * m_moveSpeed * Time.deltaTime;
+
+            if(!_characterController.isGrounded)
+            {
+                dir += Vector3.up * m_gravityValue * Time.deltaTime;
+            }
             _characterController.Move(dir);
+            
+
         }
 
         if(transform.position.y < - 30)
@@ -92,7 +100,10 @@ public class PlayerController : MonoBehaviour
     {
         //met en pause le jeu
         m_canMove = !m_canMove; 
-        Cursor.lockState = CursorLockMode.Locked;
+        if(m_canMove)
+            Cursor.lockState = CursorLockMode.Locked;
+        else
+            Cursor.lockState = CursorLockMode.None;
         DataHandler.IsGamePause = !DataHandler.IsGamePause;
         if (m_onGamePauseEvent)
             m_onGamePauseEvent.Raise();

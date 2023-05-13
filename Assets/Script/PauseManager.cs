@@ -9,6 +9,7 @@ public class PauseManager : MonoBehaviour
     CustomEvent m_OnPauseEvent;
     [SerializeField]
     GameObject[] m_gameObjectsToDisplay;
+
     private void OnEnable()
     {
         m_OnPauseEvent.myEvent += OnPause;
