@@ -1,34 +1,48 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickableObject : MonoBehaviour, IPointerDownHandler, IDropHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Vector3 _startPosition;
+    private int _clickCount = 0;
 
     private void Awake()
     {
         _startPosition = this.transform.position;
     }
 
+    public virtual void OnEnable()
+    {
+
+    }
+
+    public virtual void OnDisable()
+    {
+
+    }
+
+    public virtual void Update()
+    {
+        if(Input.GetMouseButtonUp(0) && DataHandler._clickedObject == this) 
+        {
+            Debug.Log("mouse up going do ondrop");
+            OnDrop();
+        }
+    }
+
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out ClickableObject clickable) && DataHandler._clickedObject != null && DataHandler._clickedObject == this)
+        if (collision.TryGetComponent(out ClickableObject clickable) && DataHandler._clickedObject == this)
         {
             DataHandler._targetFromClickedObject = clickable;
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        DataHandler._clickedObject = this;
-    }
-
-    public virtual void OnDrop(PointerEventData eventData) => Debug.Log($"Moved Object From {DataHandler._clickedObject} to {DataHandler._targetFromClickedObject}");
-
     //drag
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         _startPosition = transform.position;
+        DataHandler._clickedObject = this;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -40,5 +54,22 @@ public class ClickableObject : MonoBehaviour, IPointerDownHandler, IDropHandler,
     {
         transform.position = _startPosition;
     }
+
+    public virtual void OnDrop() { }
+
+    public virtual void OnPointerClick(PointerEventData eventData)
+    {
+
+        _clickCount++;
+        if(_clickCount >= 2)
+        {
+            ClickCount();
+        }
+    }
+    public virtual void ClickCount()
+    {
+
+    }
+
 }
     
