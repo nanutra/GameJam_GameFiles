@@ -12,6 +12,7 @@ public static class DataHandler
 
     public static ClickableObject _targetFromClickedObject = null;
 
+    public static List<PlayersFile> _allCurrentFilesInOuindo = new List<PlayersFile>();
 
 }
 

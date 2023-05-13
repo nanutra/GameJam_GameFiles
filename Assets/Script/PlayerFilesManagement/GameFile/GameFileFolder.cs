@@ -30,7 +30,6 @@ public class GameFileFolder : PlayersFolder
         //
         if (DataHandler.IsFolderWindowOpen) return;
         DataHandler.IsFolderWindowOpen = true;
-        Debug.Log("CallDelegateGameFileFoldre");
         OnGameFileOpenEvent.myEvent?.Invoke();
     }
 }

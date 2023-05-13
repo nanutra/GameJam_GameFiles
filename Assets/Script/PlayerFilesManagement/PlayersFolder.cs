@@ -26,11 +26,6 @@ public class PlayersFolder : ClickableObject
     private float _heightDifference = 50;
     private float _sidetDifference = 35;
 
-    private void OnEnable()
-    {
-
-    }
-
     private void Awake()
     {
         _fileNameTextReference.text = _fileName;
@@ -55,6 +50,7 @@ public class PlayersFolder : ClickableObject
     {
         _controllers = new();
         _controllers = files;
+        //utilise _controllers.gameObject au lieu de _childs
     }
 
     public void OnChangeChildren(GameObject go)
