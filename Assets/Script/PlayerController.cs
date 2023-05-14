@@ -48,25 +48,12 @@ public class PlayerController : MonoBehaviour
 
         if(m_canMove)
         {
-            #region OldCamera
-            /*
-            float mouseX = Input.GetAxis("Mouse X") * m_cameraSens * Time.deltaTime;
-            float mouseY = Input.GetAxis("Mouse Y") * m_cameraSens * Time.deltaTime;
-
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation ,- 90,90);
-     
-            yRotation += mouseX;
-
-            transform.rotation = Quaternion.Euler(Vector3.up * yRotation);
-            m_mainCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + xRotation * Vector3.right);
-            /**/
-            #endregion
 
             #region NewCamera
-            m_mouseMouvement = Mouse.current.delta.ReadValue();
-            xrot = m_mouseMouvement.y * Time.deltaTime * m_cameraSens;
-            yrot = m_mouseMouvement.x * Time.deltaTime * m_cameraSens;
+
+            //m_mouseMouvement = Mouse.current.delta.ReadValue();
+            xrot = Input.GetAxis("Mouse Y") * Time.deltaTime * m_cameraSens;
+            yrot = Input.GetAxis("Mouse X") * Time.deltaTime * m_cameraSens;
             xRotation -= xrot;
             yRotation += yrot;
             xRotation = Mathf.Clamp(xRotation, -90, 90);
@@ -77,7 +64,7 @@ public class PlayerController : MonoBehaviour
             m_mainCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + xRotation * Vector3.right);
 
             #endregion
-            float hor = Input.GetAxisRaw("Horizontal");
+           /* float hor = Input.GetAxisRaw("Horizontal");
             float ver = Input.GetAxisRaw("Vertical");
 
 
@@ -88,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 dir += Vector3.up * m_gravityValue * Time.deltaTime;
             }
             _characterController.Move(dir);
-            
+            */
 
         }
 
