@@ -3632,6 +3632,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5945816146441704791, guid: 6c9746e760a81d64d981f56a7b3aded4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945816146441704791, guid: 6c9746e760a81d64d981f56a7b3aded4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7816769421506946328, guid: 6c9746e760a81d64d981f56a7b3aded4,
         type: 3}
       propertyPath: m_Enabled
@@ -3721,12 +3731,12 @@ PrefabInstance:
     - target: {fileID: 9096513192281310173, guid: 6c9746e760a81d64d981f56a7b3aded4,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 95.9237
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9096513192281310173, guid: 6c9746e760a81d64d981f56a7b3aded4,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 128.0959
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9096513192281310173, guid: 6c9746e760a81d64d981f56a7b3aded4,
         type: 3}
@@ -10566,7 +10576,37 @@ PrefabInstance:
     - target: {fileID: 4927641887832075173, guid: 07ee5cb94a23fc448b0251078a796236,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753565107413951497, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5753565107413951497, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851451877464947235, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851451877464947235, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003152542292909925, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003152542292909925, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6070426590500364867, guid: 07ee5cb94a23fc448b0251078a796236,
         type: 3}
@@ -10598,6 +10638,36 @@ PrefabInstance:
       propertyPath: _gameObject.Array.data[4]
       value: 
       objectReference: {fileID: 201561063}
+    - target: {fileID: 7162485094649180803, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162485094649180803, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046059015237446825, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046059015237446825, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219428825824201199, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219428825824201199, guid: 07ee5cb94a23fc448b0251078a796236,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ee5cb94a23fc448b0251078a796236, type: 3}
 --- !u!114 &920356405040861186 stripped
