@@ -1,12 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private Vector3 _startPosition;
     protected int _clickCount = 0;
     [SerializeField] private bool _canBeClicked = false;
+    public Image _backgroundImage;
 
     private void Awake()
     {
@@ -65,6 +67,7 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        _backgroundImage.gameObject.SetActive(true);
         if (DataHandler._clickedObject != this)
         {
             DataHandler._targetFromClickedObject = this;
@@ -74,6 +77,7 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
+        _backgroundImage.gameObject.SetActive(false);
         if (DataHandler._targetFromClickedObject == this)
         {
             DataHandler._targetFromClickedObject = null;
