@@ -68,12 +68,13 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (DataHandler._clickedObject != this)
         {
             DataHandler._targetFromClickedObject = this;
+            CheckFile(this);
         }
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
-        if (DataHandler._clickedObject == this)
+        if (DataHandler._targetFromClickedObject == this)
         {
             DataHandler._targetFromClickedObject = null;
         }
@@ -92,12 +93,22 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 _clickCount = 0;
             }
         }
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            CheckFile(this);
+        }
        
     }
     public virtual void ClickCount()
     {
 
     }
-
+    public virtual void CheckFile(ClickableObject c)
+    {
+        if(c is PlayersFile)
+        {
+            DataHandler._rightClickedObject = this;
+        }
+    }
 }
     
