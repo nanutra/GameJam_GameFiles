@@ -215,10 +215,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canBeClicked: 0
+  _backgroundImage: {fileID: 6373705008927542939}
   _parentFiles: {fileID: 5522473833271462495}
   _fileNameTextReference: {fileID: 5063089577242663154}
   _fileName: GameFiles
   _controllers: []
+  _gos: []
   _heightDifference: 50
   _onFolderSelected: {fileID: 0}
 --- !u!1 &1908461311405120054
