@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class PlayersFolder : ClickableObject
     [SerializeField]
     private CustomEvent _onFolderSelected;
 
+    bool canTask = false;
+
 
     public override void OnEnable()
     {
@@ -37,10 +40,12 @@ public class PlayersFolder : ClickableObject
     {
         base.OnDisable();
         PlayersFile.onFileMove -= OnFileMoved;
+        canTask = false;
     }
 
     private void Awake()
     {
+        canTask = true;
         _fileNameTextReference.text = _fileName;
     }
 
@@ -52,6 +57,37 @@ public class PlayersFolder : ClickableObject
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
+    }
+
+    public async void Update()
+    {
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(DataHandler._rightClickedObject == null)
+            {
+                ObjectSpawnFile.display?.Invoke();
+            }
+            else
+            {
+                await Task.Delay(100);
+                if (!canTask) return;
+                DataHandler._rightClickedObject = null;
+                ObjectSpawnFile.display?.Invoke();
+
+            }
+
+        }
+        else
+        {
+            if(Input.GetMouseButtonDown(1))
+            {
+                if (DataHandler._rightClickedObject == null)
+                {
+                    ObjectSpawnFile.display?.Invoke();
+                }
+            }
+        }
     }
 
     public void AddPlayerFile(PlayersFile file)

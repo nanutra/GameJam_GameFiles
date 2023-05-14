@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,27 +10,38 @@ using UnityEngine.UI;
 public class ObjectSpawnFile : PlayersFile
 {
     [SerializeField] private List<GameObject> _gameObject;   
-    [SerializeField] private List<Vector3> _startPos = new();   
+    [SerializeField] private List<GameObject> _saveGameObject;   
+    [SerializeField] private List<Vector3> _startPos = new();
+
+    public delegate void Display();
+    public static Display display;
+
     
     public override void OnEnable()
     {
         base.OnEnable();
         HandlerRegisterToEvents();
+        display += ResetDisplay;
     }
 
     public void OnDestroy()
     {
         HandlerUnregisterEvent();
+        display -= ResetDisplay;
+
     }
 
     private void Start()
     {
-        if (_gameObject.Count <= 0) return;
-        for(int i = 0; i < _gameObject.Count; i++)
+        if(_gameObject.Count > 0)
+        for(int i = 0; i < _gameObject.Count;i++)
         {
+            _saveGameObject.Add(Instantiate(_gameObject[i]));
             _startPos.Add(_gameObject[i].transform.position);
+            _saveGameObject[i].SetActive(false);
         }
-        for(int i = 0; i < _controllersEvents.Count; i++)
+
+        for (int i = 0; i < _controllersEvents.Count; i++)
         {
             var buttonEvent = Instantiate(_prefabButton, _group.transform);
             buttonEvent._event = _controllersEvents[i];
@@ -61,22 +73,40 @@ public class ObjectSpawnFile : PlayersFile
 
     private void OnDuplicate()
     {
-        var _temp = _gameObject;
-        for (int i = 0; i < _temp.Count; i++)
+        if (DataHandler._rightClickedObject != this) return;
+
+        var _temp = _saveGameObject.Count;
+        if (_temp <= 0) return;
+        for (int i = 0; i < _temp; i++)
         {
-            GameObject g = Instantiate(_temp[i], _startPos[i], Quaternion.identity);
-            _gameObject.Add(g);
-            _startPos.Add(g.transform.position);
+            if (_saveGameObject[i] != null )
+            {
+                Debug.Log("duplicate");
+                GameObject g = Instantiate(_saveGameObject[i], _startPos[i], _saveGameObject[i].transform.rotation);
+                g.SetActive(true); ;
+                _gameObject.Add(g);
+            }
         }
     }
 
     private void OnReset()
     {
+        if (DataHandler._rightClickedObject != this) return;
+
+        
         for (int i =0; i < _gameObject.Count; i++)
         {
-            _gameObject[i].SetActive(true);
-            _gameObject[i].transform.position = _startPos[i];
+            Destroy(_gameObject[i]);
         }
+        _gameObject = new();
+        
+        for (int i = 0; i < _saveGameObject.Count; i++)
+        {
+            GameObject g = Instantiate(_saveGameObject[i], _startPos[i], _saveGameObject[i].transform.rotation);
+            _gameObject.Add(g);
+            g.SetActive(true);
+        }
+        /**/
     }
 
     private void OnRenameFile()
@@ -112,12 +142,22 @@ public class ObjectSpawnFile : PlayersFile
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+
         if(eventData.button == PointerEventData.InputButton.Right)
         {
+            display?.Invoke();
             _group.gameObject.SetActive(true);
         }
+
         base.OnPointerClick(eventData);
     }
+
+    public void ResetDisplay()
+    {
+        _group.gameObject.SetActive(false);
+
+    }
+
     public void OnButtonClicked()
     {
 

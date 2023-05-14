@@ -58,6 +58,7 @@ public class PlayersFile : ClickableObject, IPointerClickHandler
                 Debug.Log(this,this);
                 DataHandler._rightClickedObject = this;
             }
+
            
         }
         if (Input.GetMouseButtonUp(0))
