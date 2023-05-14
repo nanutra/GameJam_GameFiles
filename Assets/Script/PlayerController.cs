@@ -74,7 +74,8 @@ public class PlayerController : MonoBehaviour
             {
                 dir += Vector3.up * m_gravityValue * Time.deltaTime;
             }
-            _characterController.Move(dir);
+            if(_characterController)
+                _characterController.Move(dir);
             
 
         }
