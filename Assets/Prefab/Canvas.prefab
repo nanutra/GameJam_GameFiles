@@ -2264,6 +2264,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1046703939971602511, guid: e47ffeb137434214d8cbddabdca40f84,
         type: 3}
+      propertyPath: _fileName
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046703939971602511, guid: e47ffeb137434214d8cbddabdca40f84,
+        type: 3}
       propertyPath: _isRightOnStart
       value: 1
       objectReference: {fileID: 0}
