@@ -9,7 +9,7 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     protected int _clickCount = 0;
     [SerializeField] private bool _canBeClicked = false;
     public Image _backgroundImage;
-
+    public AudioSource _audioClip;
     private void Awake()
     {
         _startPosition = this.transform.position;
@@ -86,7 +86,8 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left)
+        _audioClip.Play();
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             DataHandler._clickedObject = this;
             if (!_canBeClicked) return;
