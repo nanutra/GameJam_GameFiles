@@ -37,8 +37,12 @@ public class ObjectSpawnFile : PlayersFile
             _saveGameObject[i].SetActive(false);
         }
 
+        _group.transform.position += Vector3.right * 300;
+
         for (int i = 0; i < _controllersEvents.Count; i++)
         {
+
+
             var buttonEvent = Instantiate(_prefabButton, _group.transform);
             buttonEvent._event = _controllersEvents[i];
             string[] subs = buttonEvent._event.name.Split("_");
