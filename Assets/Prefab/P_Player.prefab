@@ -136,7 +136,7 @@ MonoBehaviour:
   _characterController: {fileID: 5049270766908308443}
   m_mainCamera: {fileID: 5049270767132749799}
   m_moveSpeed: 5
-  m_cameraSens: 500
+  mouseSensitivity: 2
   m_gravityScale: 1
 --- !u!1 &5049270767132749798
 GameObject:
@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 5049270767132749799}
   - component: {fileID: 5049270767132749797}
   - component: {fileID: 5049270767132749796}
+  - component: {fileID: 1597053810875565352}
   m_Layer: 4
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -165,7 +166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5049270767132749798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,6 +257,20 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1597053810875565352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049270767132749798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a387d98dead984c822e322ce9b6d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSens: 100
+  PlayerBody: {fileID: 5049270766908308447}
 --- !u!1 &8393987704628662309
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,20 +21,12 @@ public class PlayerController : MonoBehaviour
     private float m_moveSpeed;
     [Header("Movement")]
     [SerializeField]
-    private float m_cameraSens = 50f;
+    private float mouseSensitivity = 50f;
     private float m_gravityValue = Physics.gravity.y;
     [SerializeField]
     private float m_gravityScale = 1f;
-
-
     public static bool m_canMove = true;
-
-    Vector2 m_mouseMouvement;
-    private float xRotation;
-    private float yRotation;
-    float xrot = 0, yrot = 0;
-
-
+    float yaw, pitch;
 
     private void Start()
     {
@@ -46,22 +38,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) Escape();
 
-        if(m_canMove)
+      
+        if (m_canMove)
         {
 
             #region NewCamera
 
-            //m_mouseMouvement = Mouse.current.delta.ReadValue();
-            xrot = Input.GetAxis("Mouse Y") * Time.deltaTime * m_cameraSens;
-            yrot = Input.GetAxis("Mouse X") * Time.deltaTime * m_cameraSens;
-            xRotation -= xrot;
-            yRotation += yrot;
-            xRotation = Mathf.Clamp(xRotation, -90, 90);
+            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
-            //transform.rotation = Quaternion.Euler(Vector3.up * yRotation);
+            pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
 
-            transform.Rotate(yrot * Vector3.up);
-            m_mainCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + xRotation * Vector3.right);
+            // Clamp pitch between lookAngle
+            pitch = Mathf.Clamp(pitch, -90f, 90f);
+
+            transform.localEulerAngles = new Vector3(0, yaw, 0);
+            m_mainCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
 
             #endregion
             float hor = Input.GetAxisRaw("Horizontal");
