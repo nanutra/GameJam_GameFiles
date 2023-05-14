@@ -18,6 +18,10 @@ public static class DataHandler
     public static PlayersFolder _currentFolderSelected;
     public static PlayersFolder _lastFolderSelected;
 
+    public static List<PlayersFolder> _allWindowFolder;
+    public static GameObject FileWindow;
+
+
 }
 
 

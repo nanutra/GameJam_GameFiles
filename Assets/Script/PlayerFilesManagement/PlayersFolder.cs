@@ -7,9 +7,9 @@ using UnityEngine.EventSystems;
 public class PlayersFolder : ClickableObject
 {
     [SerializeField]
-    private Transform _parentFiles;
+    private PlayersFolder _parentFiles;
 
-    public Transform ParentFiles => _parentFiles;
+    public PlayersFolder ParentFiles => _parentFiles;
 
     [SerializeField]
     private TextMeshProUGUI _fileNameTextReference = null;
@@ -83,9 +83,22 @@ public class PlayersFolder : ClickableObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        base.OnPointerClick(eventData);
+        //base.OnPointerClick(eventData);
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            DataHandler._clickedObject = this;
+        }
+            _clickCount++;
+        if (_clickCount < 2) return;
         DataHandler._currentFolderSelected = this;
-        _onFolderSelected.myEvent?.Invoke();
+        _clickCount = 0;
+        foreach (var v in DataHandler._allWindowFolder)
+        {
+            if (v != _parentFiles) v.gameObject.SetActive(false);
+            else v.gameObject.SetActive(true);
+        }
+        DataHandler.FileWindow.SetActive(true);
+        //_onFolderSelected.myEvent?.Invoke();
     }
 
     public override void OnDrop()

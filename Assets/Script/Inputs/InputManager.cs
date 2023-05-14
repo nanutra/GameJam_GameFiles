@@ -26,6 +26,6 @@ public class InputManager : MonoBehaviour
     private void OnGUI()
     {
         _valuesText = DataHandler._clickedObject + " " + DataHandler._targetFromClickedObject;
-        GUI.Label(new Rect(100, 20, 300, 20), _valuesText);
+        GUI.Label(new Rect(200, 200, 300, 20), _valuesText);
     }
 }
