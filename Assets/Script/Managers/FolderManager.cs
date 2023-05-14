@@ -20,6 +20,9 @@ public class FolderManager : MonoBehaviour
 
     [SerializeField]
     private List<PlayersFile> _allCurrentGameFilesInWindow;
+    [SerializeField]
+    public List<PlayersFolder> _allWindowFolder;
+    public GameObject _folderWindow;
 
     [SerializeField]
     private float _heightDifference = 100f;
@@ -41,6 +44,11 @@ public class FolderManager : MonoBehaviour
         _onFolderSelected.myEvent -= OnFolderSelected;
     }
 
+    private void Awake()
+    {
+        DataHandler._allWindowFolder = _allWindowFolder;
+        DataHandler.FileWindow = _folderWindow;
+    }
     /// <summary>
     /// raised when double click on game file
     /// </summary>
@@ -60,6 +68,9 @@ public class FolderManager : MonoBehaviour
 
     public void OnFolderSelected()
     {
+ 
+        /*
+        Debug.Log("doubleClick");
         List<PlayersFolder> tempList = DataHandler._allPlayersFolder;
         tempList.Remove(DataHandler._currentFolderSelected);
 
@@ -68,6 +79,7 @@ public class FolderManager : MonoBehaviour
         {
             temp.DisableOrEnableControllers(false);
         }
+        /**/
     }
 
 }

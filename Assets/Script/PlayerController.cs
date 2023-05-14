@@ -71,7 +71,9 @@ public class PlayerController : MonoBehaviour
             yRotation += yrot;
             xRotation = Mathf.Clamp(xRotation, -90, 90);
 
-            transform.rotation = Quaternion.Euler(Vector3.up * yRotation);
+            //transform.rotation = Quaternion.Euler(Vector3.up * yRotation);
+
+            transform.Rotate(yrot * Vector3.up);
             m_mainCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + xRotation * Vector3.right);
 
             #endregion

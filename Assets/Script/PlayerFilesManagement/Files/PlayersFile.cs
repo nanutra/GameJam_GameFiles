@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Runtime.Serialization.Json;
 
 public class PlayersFile : ClickableObject
 {
@@ -37,25 +39,70 @@ public class PlayersFile : ClickableObject
 
     }
 
+    private void Update()
+    {
+/*        Debug.Log(DataHandler._clickedObject);
+        Debug.Log(DataHandler._targetFromClickedObject);*/
+        if(Input.GetMouseButtonUp(0))
+        {
+            Debug.Log(this);
+            Debug.Log(DataHandler._targetFromClickedObject);
+
+            if (DataHandler._targetFromClickedObject is not PlayersFolder) return;
+
+            PlayersFolder _folder = DataHandler._targetFromClickedObject as PlayersFolder;
+            var _tempFolder = _folder.ParentFiles;
+            if (_tempFolder == null) return;
+            Debug.Log("byufdobgvyfou");
+            onFileMove.Invoke(this);
+            _tempFolder.AddPlayerFile(this);
+
+            /*       int i = _folder.ParentFiles.childCount;
+                   Vector3 pos = _folder.ParentFiles.transform.position - Vector3.up * (i) * 70;
+                   transform.position = pos;*/
+            transform.SetParent(_folder.ParentFiles.transform);
+            _tempFolder.OnDisplayChilds();
+            SetTextPosition(true);
+
+            DataHandler._targetFromClickedObject = null;
+            DataHandler._clickedObject = null;
+        }
+    }
+
     public override void OnDrop()
     {
+        /*
+        Debug.Log(this);
+
         base.OnDrop();
+        Debug.Log(this);
+        Debug.Log(DataHandler._targetFromClickedObject);
+
         if (DataHandler._targetFromClickedObject is not PlayersFolder) return;
-        onFileMove.Invoke(this);
+
         PlayersFolder _folder = DataHandler._targetFromClickedObject as PlayersFolder;
-        var _tempFolder = _folder.ParentFiles.GetComponent<PlayersFolder>();
+        var _tempFolder = _folder.ParentFiles;
+        if (_tempFolder == null) return;
+        Debug.Log("byufdobgvyfou");
+        onFileMove.Invoke(this);
         _tempFolder.AddPlayerFile(this);
 
         /*       int i = _folder.ParentFiles.childCount;
                Vector3 pos = _folder.ParentFiles.transform.position - Vector3.up * (i) * 70;
-               transform.position = pos;*/
-        transform.SetParent(_folder.ParentFiles);
+               transform.position = pos;/**/
+        /*
+        transform.SetParent(_folder.ParentFiles.transform);
         _tempFolder.OnDisplayChilds();
         SetTextPosition(true);
 
         DataHandler._targetFromClickedObject = null;
         DataHandler._clickedObject = null;
+        /**/
+    }
 
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        base.OnPointerClick(eventData);
     }
 
     public void SetTextPosition(bool _rightSide)

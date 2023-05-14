@@ -1,10 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Vector3 _startPosition;
-    private int _clickCount = 0;
+    protected int _clickCount = 0;
     [SerializeField] private bool _canBeClicked = false;
 
     private void Awake()
@@ -32,10 +33,16 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        if(DataHandler._clickedObject != this)
+        {
+            DataHandler._targetFromClickedObject = this;
+        }
+        /*
         if (collision.TryGetComponent(out ClickableObject clickable) && DataHandler._clickedObject == this)
         {
             DataHandler._targetFromClickedObject = clickable;
         }
+        /**/
     }
 
     //drag
@@ -55,6 +62,22 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public virtual void OnDrop() { }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        if (DataHandler._clickedObject != this)
+        {
+            DataHandler._targetFromClickedObject = this;
+        }
+    }
+
+    public virtual void OnPointerExit(PointerEventData eventData)
+    {
+        if (DataHandler._clickedObject == this)
+        {
+            DataHandler._targetFromClickedObject = null;
+        }
+    }
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
