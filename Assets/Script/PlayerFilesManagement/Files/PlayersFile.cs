@@ -63,7 +63,7 @@ public class PlayersFile : ClickableObject, IPointerClickHandler
         }
         if (Input.GetMouseButtonUp(0))
         {
-
+            /*
             if (DataHandler._targetFromClickedObject is not PlayersFolder || DataHandler._clickedObject != this) return;
             PlayersFolder _folder = DataHandler._targetFromClickedObject as PlayersFolder;
             var _tempFolder = _folder.ParentFiles;
@@ -75,7 +75,7 @@ public class PlayersFile : ClickableObject, IPointerClickHandler
             SetTextPosition(true);
 
             DataHandler._targetFromClickedObject = null;
-            DataHandler._clickedObject = null;
+            DataHandler._clickedObject = null;/**/
         }
 
     }
