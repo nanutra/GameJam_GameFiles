@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) Escape();
 
       
-        if (m_canMove)
+    if (m_canMove)
         {
 
             #region NewCamera

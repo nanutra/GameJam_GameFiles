@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class ObjectSpawnFile : PlayersFile
 {
@@ -81,7 +76,6 @@ public class ObjectSpawnFile : PlayersFile
         {
             if (_saveGameObject[i] != null )
             {
-                Debug.Log("duplicate");
                 GameObject g = Instantiate(_saveGameObject[i], _startPos[i], _saveGameObject[i].transform.rotation);
                 g.SetActive(true); ;
                 _gameObject.Add(g);

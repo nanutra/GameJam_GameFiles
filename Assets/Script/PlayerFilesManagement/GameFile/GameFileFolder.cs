@@ -21,12 +21,17 @@ public class GameFileFolder : PlayersFolder
 
     public override void ClickCount()
     {
+
         base.ClickCount();
+        foreach (var v in _gos)
+        {
+            v.gameObject.SetActive(true);
+        }
         OnGameFileFolderOpen();
     }
     private void OnGameFileFolderOpen()
     {
-        
+
         //
         if (DataHandler.IsFolderWindowOpen) return;
         DataHandler.IsFolderWindowOpen = true;

@@ -20,7 +20,8 @@ public class PlayersFolder : ClickableObject
 
     [SerializeField]
     private List<PlayersFile> _controllers = new();
-
+    [SerializeField]
+    protected List<GameObject> _gos = new();
     [SerializeField]
     private float _heightDifference = 70;
     private float _sidetDifference = 0;
@@ -120,8 +121,10 @@ public class PlayersFolder : ClickableObject
         {
             DataHandler._clickedObject = this;
         }
-            _clickCount++;
+        _clickCount++;
         if (_clickCount < 2) return;
+
+        ClickCount();
         DataHandler._currentFolderSelected = this;
         _clickCount = 0;
         foreach (var v in DataHandler._allWindowFolder)
@@ -151,6 +154,11 @@ public class PlayersFolder : ClickableObject
 
             OnDisplayChilds();
         }
+
+    }
+    
+    public override void ClickCount()
+    {
 
     }
 }
