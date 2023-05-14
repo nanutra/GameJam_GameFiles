@@ -31,7 +31,6 @@ public class PlayersFolder : ClickableObject
 
     bool canTask = false;
 
-
     public override void OnEnable()
     {
         base.OnEnable();
