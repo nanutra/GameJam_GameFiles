@@ -4,8 +4,9 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Runtime.Serialization.Json;
+using System.Collections.Generic;
 
-public class PlayersFile : ClickableObject
+public class PlayersFile : ClickableObject, IPointerClickHandler
 {
     [SerializeField]
     private TextMeshProUGUI _fileNameTextReference = null;
@@ -27,6 +28,13 @@ public class PlayersFile : ClickableObject
     [SerializeField]
     private bool _isRightOnStart = false;
 
+    public List<CustomEvent> _controllersEvents;
+    public List<ButtonFileEvent> _buttonsFiles;
+    public CustomEvent _destroyEvent;
+    public CustomEvent _renameEvent;
+    public VerticalLayoutGroup _group;
+    public ButtonFileEvent _prefabButton;
+
     public delegate void OnFileMoved(PlayersFile f);
     public static OnFileMoved onFileMove;
 
@@ -41,25 +49,26 @@ public class PlayersFile : ClickableObject
 
     private void Update()
     {
-/*        Debug.Log(DataHandler._clickedObject);
-        Debug.Log(DataHandler._targetFromClickedObject);*/
-        if(Input.GetMouseButtonUp(0))
+        /*        Debug.Log(DataHandler._clickedObject);
+                Debug.Log(DataHandler._targetFromClickedObject);*/
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log(this);
-            Debug.Log(DataHandler._targetFromClickedObject);
+            if (DataHandler._rightOverObject == this)
+            {
+                Debug.Log(this,this);
+                DataHandler._rightClickedObject = this;
+            }
+           
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
 
-            if (DataHandler._targetFromClickedObject is not PlayersFolder) return;
-
+            if (DataHandler._targetFromClickedObject is not PlayersFolder || DataHandler._clickedObject != this) return;
             PlayersFolder _folder = DataHandler._targetFromClickedObject as PlayersFolder;
             var _tempFolder = _folder.ParentFiles;
             if (_tempFolder == null) return;
-            Debug.Log("byufdobgvyfou");
             onFileMove.Invoke(this);
             _tempFolder.AddPlayerFile(this);
-
-            /*       int i = _folder.ParentFiles.childCount;
-                   Vector3 pos = _folder.ParentFiles.transform.position - Vector3.up * (i) * 70;
-                   transform.position = pos;*/
             transform.SetParent(_folder.ParentFiles.transform);
             _tempFolder.OnDisplayChilds();
             SetTextPosition(true);
@@ -67,6 +76,7 @@ public class PlayersFile : ClickableObject
             DataHandler._targetFromClickedObject = null;
             DataHandler._clickedObject = null;
         }
+
     }
 
     public override void OnDrop()

@@ -7,12 +7,7 @@ using UnityEngine.UI;
 
 public class ObjectSpawnFile : PlayersFile
 {
-    public List<CustomEvent> _controllersEvents;
-    public List<ButtonFileEvent> _buttonsFiles;
-    public CustomEvent _destroyEvent;
-    public CustomEvent _renameEvent;
-    public VerticalLayoutGroup _group;
-    public ButtonFileEvent _prefabButton;
+   
 
     public override void OnEnable()
     {
@@ -27,7 +22,6 @@ public class ObjectSpawnFile : PlayersFile
 
     private void Start()
     {
-
         for(int i = 0; i < _controllersEvents.Count; i++)
         {
             var buttonEvent = Instantiate(_prefabButton, _group.transform);
@@ -52,14 +46,20 @@ public class ObjectSpawnFile : PlayersFile
 
     private void OnRenameFile()
     {
-        //rename le file genre   
-        Debug.Log("rename me file ");
+        if(DataHandler._rightClickedObject == this)
+        {
+            //rename le file genre   
+            Debug.Log("rename me " + this, this);
+        }
+
     }
 
     private void OnDestroyFile()
     {
-        //détruire un wall genre
-        Debug.Log("Détruire le wall genre");
+        if (DataHandler._rightClickedObject == this)
+        {
+            Debug.Log("Détruire le wall genre");
+        }
     }
 
     //Player va penser que ça le crée

@@ -9,6 +9,8 @@ public static class DataHandler
     public static bool IsFolderWindowOpen = false;
 
     public static ClickableObject _clickedObject = null;
+    public static ClickableObject _rightClickedObject = null;
+    public static ClickableObject _rightOverObject = null;
 
     public static ClickableObject _targetFromClickedObject = null;
 
