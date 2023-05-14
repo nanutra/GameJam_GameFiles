@@ -19,6 +19,6 @@ public class DestroyGameObject : MonoBehaviour
 
     private void OnRaisedEvent()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

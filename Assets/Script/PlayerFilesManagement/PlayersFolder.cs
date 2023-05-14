@@ -27,8 +27,6 @@ public class PlayersFolder : ClickableObject
     [SerializeField]
     private CustomEvent _onFolderSelected;
 
-    [SerializeField]
-    private bool _isMenuFolder = false;
 
     public override void OnEnable()
     {
@@ -44,8 +42,6 @@ public class PlayersFolder : ClickableObject
     private void Awake()
     {
         _fileNameTextReference.text = _fileName;
-
-        if (_isMenuFolder) DataHandler._allPlayersFolder.Add(this);
     }
 
     private void Start()
@@ -108,14 +104,6 @@ public class PlayersFolder : ClickableObject
         {
             DataHandler._lastFolderSelected = this;
             DataHandler._currentFolderSelected = null;
-        }
-    }
-
-    public void DisableOrEnableControllers(bool _value)
-    {
-        foreach (var controller in _controllers)
-        {
-            controller.gameObject.SetActive(_value);
         }
     }
 

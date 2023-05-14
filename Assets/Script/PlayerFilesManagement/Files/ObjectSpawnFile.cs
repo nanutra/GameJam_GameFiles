@@ -14,9 +14,9 @@ public class ObjectSpawnFile : PlayersFile
         base.OnEnable();
         HandlerRegisterToEvents();
     }
-    public override void OnDisable()
+
+    public void OnDestroy()
     {
-        base.OnDisable();
         HandlerUnregisterEvent();
     }
 
@@ -26,7 +26,9 @@ public class ObjectSpawnFile : PlayersFile
         {
             var buttonEvent = Instantiate(_prefabButton, _group.transform);
             buttonEvent._event = _controllersEvents[i];
-            buttonEvent._textMPRO.text = _controllersEvents[i].name + " " + this._fileNameSuffix;
+            string[] subs = buttonEvent._event.name.Split("_");
+
+            buttonEvent._textMPRO.text = subs[1] + " " + _fileName;
             _buttonsFiles.Add(buttonEvent);
         }
         _group.gameObject.SetActive(false);
@@ -59,6 +61,8 @@ public class ObjectSpawnFile : PlayersFile
         if (DataHandler._rightClickedObject == this)
         {
             Debug.Log("Détruire le wall genre");
+            onFileMove?.Invoke(this);
+            Destroy(gameObject);
         }
     }
 

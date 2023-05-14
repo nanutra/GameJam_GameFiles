@@ -1,9 +1,7 @@
 using UnityEngine;
 using TMPro;
-using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Runtime.Serialization.Json;
 using System.Collections.Generic;
 
 public class PlayersFile : ClickableObject, IPointerClickHandler
@@ -15,7 +13,7 @@ public class PlayersFile : ClickableObject, IPointerClickHandler
     private Image _fileImageReference = null;
 
     [SerializeField]
-    private string _fileName;
+    protected string _fileName;
 
     [SerializeField]
     protected string _fileNameSuffix;

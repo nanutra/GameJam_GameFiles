@@ -6,6 +6,7 @@ public class ButtonFileEvent : MonoBehaviour, IPointerClickHandler
 {
     public TextMeshProUGUI _textMPRO;
     public CustomEvent _event;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         //if left click raise
