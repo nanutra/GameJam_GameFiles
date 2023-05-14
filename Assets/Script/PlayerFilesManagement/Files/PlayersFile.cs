@@ -30,6 +30,8 @@ public class PlayersFile : ClickableObject, IPointerClickHandler
     public List<ButtonFileEvent> _buttonsFiles;
     public CustomEvent _destroyEvent;
     public CustomEvent _renameEvent;
+    public CustomEvent _duplicate;
+    public CustomEvent _reset;
     public VerticalLayoutGroup _group;
     public ButtonFileEvent _prefabButton;
 

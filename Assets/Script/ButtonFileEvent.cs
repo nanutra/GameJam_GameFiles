@@ -13,6 +13,7 @@ public class ButtonFileEvent : MonoBehaviour, IPointerClickHandler
         if(eventData.button == PointerEventData.InputButton.Left)
         {
             _event.myEvent?.Invoke();
+            //DataHandler._rightClickedObject.
         }
     }
 }

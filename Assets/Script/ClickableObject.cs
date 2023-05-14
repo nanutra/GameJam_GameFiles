@@ -107,7 +107,7 @@ public class ClickableObject : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if(c is PlayersFile)
         {
-            DataHandler._rightClickedObject = this;
+            DataHandler._rightClickedObject = (PlayersFile)this;
         }
     }
 }
