@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             m_mainCamera.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + xRotation * Vector3.right);
 
             #endregion
-           /* float hor = Input.GetAxisRaw("Horizontal");
+            float hor = Input.GetAxisRaw("Horizontal");
             float ver = Input.GetAxisRaw("Vertical");
 
 
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 dir += Vector3.up * m_gravityValue * Time.deltaTime;
             }
             _characterController.Move(dir);
-            */
+            
 
         }
 
