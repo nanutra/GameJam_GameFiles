@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e378164644a510d4c8a3c46f492fbf3f, type: 3}
-  m_Name: RemoveFile
+  m_Name: 1_Remove
   m_EditorClassIdentifier: 

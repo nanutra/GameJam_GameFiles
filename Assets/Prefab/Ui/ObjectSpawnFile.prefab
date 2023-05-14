@@ -181,7 +181,7 @@ MonoBehaviour:
   _canBeClicked: 0
   _fileNameTextReference: {fileID: 8602185117897157225}
   _fileImageReference: {fileID: 6726146604659627907}
-  _fileName: SpawnObject
+  _fileName: Wall
   _fileNameSuffix: obj
   _rightTextTransform: {fileID: 4677856035653055539}
   _isRightOnStart: 0
