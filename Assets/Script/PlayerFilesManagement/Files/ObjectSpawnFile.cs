@@ -11,7 +11,8 @@ public class ObjectSpawnFile : PlayersFile
     public delegate void Display();
     public static Display display;
 
-    
+    public bool IsWindows = false;
+
     public override void OnEnable()
     {
         base.OnEnable();
@@ -117,8 +118,8 @@ public class ObjectSpawnFile : PlayersFile
     {
         if (DataHandler._rightClickedObject == this)
         {
-
-            foreach(var v in _gameObject)
+            if(IsWindows)Application.Quit();
+            foreach (var v in _gameObject)
             {
                 v.SetActive(false);
             }
