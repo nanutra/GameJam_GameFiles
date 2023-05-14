@@ -29,6 +29,9 @@ public class PlayersFolder : ClickableObject
     [SerializeField]
     private CustomEvent _onFolderSelected;
 
+    [SerializeField]
+    private TextMeshProUGUI _targetText;
+
     bool canTask = false;
 
     public override void OnEnable()
@@ -158,6 +161,6 @@ public class PlayersFolder : ClickableObject
     
     public override void ClickCount()
     {
-
+        if(_targetText != null) _targetText.text = _fileName;
     }
 }
