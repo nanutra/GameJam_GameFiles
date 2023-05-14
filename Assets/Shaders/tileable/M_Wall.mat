@@ -75,15 +75,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Metallic: 0.946
+    - _Metallic: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale_side_Metallic: 0.75
-    - _Scale_side_Roughness: 0.75
+    - _Scale_side_Metallic: 0.5
+    - _Scale_side_Roughness: 0.5
     - _Scale_side_ao: 1
-    - _Scale_side_base_color: 0.75
-    - _Scale_side_normal: 0.75
-    - _Scale_top_Metallic: 0.75
+    - _Scale_side_base_color: 0.5
+    - _Scale_side_normal: 0.5
+    - _Scale_top_Metallic: 0.5
     - _Scale_top_Roughness: 0.5
     - _Scale_top_ao: 1
     - _Scale_top_base_color: 0.5
